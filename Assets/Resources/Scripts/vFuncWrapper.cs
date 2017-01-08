@@ -1,6 +1,8 @@
 ﻿
 //// <summary>
 /// Delegate Wrapper for T  where T is the Nougat-y goodness - Allows null-default param arguments for structs
+/// It is similar to the null-able structs you get in C# but with 
+/// that added bonus of being a class and having an implicit cast to a delegate that also return the wrapped type.
 /// </summary>
 public class vFuncWrapper<T>
 {

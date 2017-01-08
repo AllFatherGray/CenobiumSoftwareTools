@@ -1,101 +1,103 @@
 ﻿using System;
 using System.Collections;
 
-
-public enum MatrixConstraints : byte { NONE = 0, ROW = 2, COL = 4, ROWCOL = 6, HEIGHT = 8, HROW = 10, HCOL = 12, ALL = 14 }
-/// <summary>
-/// 3 dimensional array that uses a single dimensional array underneath
-/// </summary>
-/// <typeparam name="T"></typeparam>
-public class Matrix<T> : IEnumerable
+namespace Cenobium
 {
-    uint row, col, height;
-    T[] matrixArray;
-    public Matrix(uint row, uint col, uint height)
+    public enum MatrixConstraints : byte { NONE = 0, ROW = 2, COL = 4, ROWCOL = 6, HEIGHT = 8, HROW = 10, HCOL = 12, ALL = 14 }
+    /// <summary>
+    /// 3 dimensional array that uses a single dimensional array underneath
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    public class Matrix<T> : IEnumerable
     {
-        this.row = row;
-        this.col = col;
-        this.height = height;
-        matrixArray = new T[Length];
-    }
-    public Matrix(int row, int col, int height)
-    {
-        this.row = Convert.ToUInt32(row);
-        this.col = Convert.ToUInt32(col);
-        this.height = Convert.ToUInt32(height);
-        matrixArray = new T[Length];
-    }
-    public uint Length
-    {
-        get
+        uint row, col, height;
+        T[] matrixArray;
+        public Matrix(uint row, uint col, uint height)
         {
-            return row * col * height;
+            this.row = row;
+            this.col = col;
+            this.height = height;
+            matrixArray = new T[Length];
         }
-    }
-    public uint Height
-    {
-        get
+        public Matrix(int row, int col, int height)
         {
-            return height;
+            this.row = Convert.ToUInt32(row);
+            this.col = Convert.ToUInt32(col);
+            this.height = Convert.ToUInt32(height);
+            matrixArray = new T[Length];
         }
-    }
-    public uint Column
-    {
-        get
+        public uint Length
         {
-            return col;
+            get
+            {
+                return row * col * height;
+            }
         }
-    }
-    public uint Row
-    {
-        get
+        public uint Height
         {
-            return row;
+            get
+            {
+                return height;
+            }
         }
-    }
-    public T this[int key1, int key2, int key3 = 0]
-    {
-        get
-        { return matrixArray[((col * key1) + key2) + (key3 * row * col)]; }
-        set
-        { matrixArray[((col * key1) + key2) + (key3 * row * col)] = value; }
-    }
-    public T this[uint key1, uint key2, uint key3 = 0]
-    {
-        get
-        { return matrixArray[((col * key1) + key2) + (key3 * row * col)]; }
-        set
-        { matrixArray[((col * key1) + key2) + (key3 * row * col)] = value; }
-    }
+        public uint Column
+        {
+            get
+            {
+                return col;
+            }
+        }
+        public uint Row
+        {
+            get
+            {
+                return row;
+            }
+        }
+        public T this[int key1, int key2, int key3 = 0]
+        {
+            get
+            { return matrixArray[((col * key1) + key2) + (key3 * row * col)]; }
+            set
+            { matrixArray[((col * key1) + key2) + (key3 * row * col)] = value; }
+        }
+        public T this[uint key1, uint key2, uint key3 = 0]
+        {
+            get
+            { return matrixArray[((col * key1) + key2) + (key3 * row * col)]; }
+            set
+            { matrixArray[((col * key1) + key2) + (key3 * row * col)] = value; }
+        }
 
-    public T this[uint key]
-    {
-        get
+        public T this[uint key]
         {
-            return matrixArray[key];
+            get
+            {
+                return matrixArray[key];
+            }
+            set
+            {
+                matrixArray[key] = value;
+            }
         }
-        set
+        public T this[int key]
         {
-            matrixArray[key] = value;
+            get
+            {
+                return matrixArray[key];
+            }
+            set
+            {
+                matrixArray[key] = value;
+            }
         }
-    }
-    public T this[int key]
-    {
-        get
+        public IEnumerator GetEnumerator()
         {
-            return matrixArray[key];
+            return matrixArray.GetEnumerator();
         }
-        set
+        public static implicit operator bool(Matrix<T> m)
         {
-            matrixArray[key] = value;
+            return m as object != null;
         }
-    }
-    public IEnumerator GetEnumerator()
-    {
-        return matrixArray.GetEnumerator();
-    }
-    public static implicit operator bool(Matrix<T> m)
-    {
-        return m as object != null;
     }
 }

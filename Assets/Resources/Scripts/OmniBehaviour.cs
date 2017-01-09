@@ -22,24 +22,6 @@
         public new Rigidbody rigidbody { get { return _rgbdy ? _rgbdy : _rgbdy = GetComponent<Rigidbody>(); } }
         Rigidbody2D _rgbdy2D = null;
         public new Rigidbody2D rigidbody2D { get { return _rgbdy2D ? _rgbdy2D : _rgbdy2D = GetComponent<Rigidbody2D>(); } }
-
-        /*
-        // Uncomment If Using Photon Unity Network
-        PhotonView _network = null;
-        public new PhotonView networkView { get { return _network ? _network : _network = base.photonView; } }
-        public new PhotonView photonView { get { return _network ? _network : _network = base.photonView; } }
-        public delegate void PhotonSerializeEvent(PhotonStream stream, PhotonMessageInfo info);
-        public event PhotonSerializeEvent SerializeViewEvent = null;
-
-        void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-        {
-            if (SerializeViewEvent != null) SerializeViewEvent(stream , info);
-        }
-        */
-        public virtual void Update()
-        {
-            //  yield return null;
-        }
         AudioSource _audio = null;
         public new AudioSource audio { get { return _audio ? _audio : _audio = GetComponent<AudioSource>(); } }
         public new string tag { get { return gameObject.tag; } set { gameObject.tag = value; } }
